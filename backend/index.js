@@ -20,7 +20,7 @@ const ProductSchema = new mongoose.Schema({
     category: { type: String, required: true, trim: true },
 });
 const Product = mongoose.model("Product", ProductSchema);
-app.get("/api", (req, res) => {
+app.get("/", (req, res) => {
     res.send("Dashboard backend is running");
 });
 // ROUTES
