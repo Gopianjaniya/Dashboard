@@ -19,7 +19,7 @@ export default function Login() {
     const toastId = toast.loading("Signing you in…");
     setTimeout(() => {
       localStorage.setItem("token", "demo123");
-      toast.success("Welcome back! Login successful 👋", { id: toastId });
+      toast.success("Welcome back! Login successful", { id: toastId });
       setLoading(false);
       navigate("/dashboard");
     }, 1000);
