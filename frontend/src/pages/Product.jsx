@@ -21,7 +21,9 @@ import {
   FaXmark,
 } from "react-icons/fa6";
 
-const API = `${import.meta.env.VITE_API_URL || "http://localhost:5000"}/api/products`;
+const API = `${import.meta.env.VITE_API_URL}/api/products`;
+console.log(API,'-------API--------');
+
 const emptyForm = { name: "", price: "", stock: "", category: "" };
 const productImages = {
   "LED Bulb 9W": "💡",
@@ -160,7 +162,6 @@ export default function Product() {
       setDeleteTarget(null);
     }
   };
-
   const filtered = useMemo(
     () =>
       products.filter((product) =>
