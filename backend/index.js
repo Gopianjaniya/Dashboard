@@ -7,7 +7,7 @@ const app = express();
 app.use(
     cors({
         origin: process.env.FRONTEND_URL,
-        credentials: true
+        credentials: true,
     }),
 );
 app.use(express.json());
@@ -20,7 +20,9 @@ const ProductSchema = new mongoose.Schema({
     category: { type: String, required: true, trim: true },
 });
 const Product = mongoose.model("Product", ProductSchema);
-
+app.get("/", (req, res) => {
+    res.send("Dashboard backend is running");
+});
 // ROUTES
 // Get all products
 app.get("/api/products", async(req, res) => {
@@ -39,7 +41,9 @@ app.post("/api/products", async(req, res) => {
         await product.save();
         res.status(201).json(product);
     } catch (error) {
-        res.status(400).json({ message: error.message || "Unable to save product" });
+        res
+            .status(400)
+            .json({ message: error.message || "Unable to save product" });
     }
 });
 
@@ -58,10 +62,14 @@ const port = process.env.PORT || 5000;
 
 async function startServer() {
     if (!process.env.MONGO_URI) {
-        throw new Error("MONGO_URI is missing. Add it to backend/.env before starting the server.");
+        throw new Error(
+            "MONGO_URI is missing. Add it to backend/.env before starting the server.",
+        );
     }
 
-    await mongoose.connect(process.env.MONGO_URI, { serverSelectionTimeoutMS: 5000 });
+    await mongoose.connect(process.env.MONGO_URI, {
+        serverSelectionTimeoutMS: 5000,
+    });
     console.log("MongoDB Connected");
     app.listen(port, () => console.log(`Server running on ${port}`));
 }
