@@ -68,9 +68,11 @@ async function startServer() {
     }
 
     await mongoose.connect(process.env.MONGO_URI, {
+        dbName: "Dashboard",
         serverSelectionTimeoutMS: 5000,
     });
     console.log("MongoDB Connected");
+    console.log("Connected Database:", mongoose.connection.db.databaseName);
     app.listen(port, () => console.log(`Server running on ${port}`));
 }
 
