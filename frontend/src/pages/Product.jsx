@@ -22,6 +22,9 @@ import {
 } from "react-icons/fa6";
 
 const API = `${import.meta.env.VITE_API_URL}/api/products`;
+console.log("ENV =", import.meta.env);
+console.log("VITE_API_URL =", import.meta.env.VITE_API_URL);
+console.log("API =", API);
 console.log(API,'-------API--------');
 
 const emptyForm = { name: "", price: "", stock: "", category: "" };
